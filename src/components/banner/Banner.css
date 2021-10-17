@@ -1,0 +1,8 @@
+.banner-image {
+    background-image: url("https://i.ibb.co/djs6F3W/dental-banner.jpg");
+    background-color: #eed9d9;
+    height: 560px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
