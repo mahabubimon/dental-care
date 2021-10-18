@@ -1,0 +1,118 @@
+[debug] [2021-10-18T14:53:40.415Z] ----------------------------------------------------------------------
+[debug] [2021-10-18T14:53:40.418Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-10-18T14:53:40.418Z] CLI Version:   9.20.0
+[debug] [2021-10-18T14:53:40.418Z] Platform:      win32
+[debug] [2021-10-18T14:53:40.418Z] Node Version:  v14.18.1
+[debug] [2021-10-18T14:53:40.426Z] Time:          Mon Oct 18 2021 20:53:40 GMT+0600 (Bangladesh Standard Time)
+[debug] [2021-10-18T14:53:40.426Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-10-18T14:53:40.508Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-10-18T14:53:40.509Z] > authorizing via signed-in user (mahabubemon24@gmail.com)
+[debug] [2021-10-18T14:53:40.509Z] [iam] checking project medicare-mi for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-10-18T14:53:40.513Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/medicare-mi:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-10-18T14:53:41.914Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 18 Oct 2021 14:53:50 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1143","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-18T14:53:41.918Z] > refreshing access token with scopes: []
+[debug] [2021-10-18T14:53:41.919Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-10-18T14:53:42.462Z] <<< HTTP RESPONSE 200 {"date":"Mon, 18 Oct 2021 14:53:50 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-18T14:53:42.480Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/medicare-mi [none]
+[debug] [2021-10-18T14:53:42.943Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/medicare-mi 200
+[debug] [2021-10-18T14:53:42.943Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/medicare-mi {"projectId":"medicare-mi","projectNumber":"160065423077","displayName":"medicare-mi","name":"projects/medicare-mi","resources":{"hostingSite":"medicare-mi"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'medicare-mi'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2021-10-18T14:53:42.951Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-10-18T14:53:42.951Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-10-18T14:53:43.145Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Mon, 18 Oct 2021 14:53:51 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-18T14:53:43.164Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/medicare-mi/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}],"headers":[{"glob":"/service-worker.js","headers":{"Cache-Control":"no-cache"}}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-10-18T14:53:45.137Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 18 Oct 2021 14:53:53 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[medicare-mi]: beginning deploy... 
+[info] i  hosting[medicare-mi]: found 22 files in build 
+[debug] [2021-10-18T14:53:45.472Z] > refreshing access token with scopes: []
+[debug] [2021-10-18T14:53:45.472Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-10-18T14:53:45.475Z] [hosting] hash cache [YnVpbGQ] stored for 22 files
+[debug] [2021-10-18T14:53:45.475Z] [hosting][hash queue][FINAL] {"max":297,"min":6,"avg":26.318181818181817,"active":0,"complete":22,"success":22,"errored":0,"retried":0,"total":22,"elapsed":305}
+[debug] [2021-10-18T14:53:45.664Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Mon, 18 Oct 2021 14:53:54 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-18T14:53:45.684Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/sites/medicare-mi/versions/c760bb1caac5f95a:populateFiles [none]
+[debug] [2021-10-18T14:53:45.684Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/medicare-mi/versions/c760bb1caac5f95a:populateFiles {"files":{"/favicon.ico":"e6930ada0095e31fce1be280b835f5c47b5cefd04207840039405f5f6258dd04","/logo192.png":"3ee59515172ee198f3be375979df15ac5345183e656720a381b8872b2a39dc8b","/logo512.png":"ee7e2f3fdb8209c4b6fd7bef6ba50d1b9dba30a25bb5c3126df057e1cb6f5331","/manifest.json":"aff3449bdc238776f5d6d967f19ec491b36aed5fb7f23ccff6500736fd58494a","/robots.txt":"bfe106a3fb878dc83461c86818bf74fc1bdc7f28538ba613cd3e775516ce8b49","/services.json":"af647584ffe2395a75bcebd4fdba7eee66be4e64c6d94c98a084d6cf9df49285","/_redirects":"ad9570b21b26001e5954948ea7672fb32b990504c96c3dd8bcf82c48832b1927","/asset-manifest.json":"8366c4b2743cb6f90879084f79eb3800e2130a1d770deb2b4f2b43e2e663c313","/index.html":"eac70155a8560735e329f46101daba6900318f8e6c4a735f4c98747b2bc5aae3","/static/css/main.307a68a9.chunk.css":"7cbf5a4d6be7a24506ad1ad04d5d133e8cf7be671bc0bfffc53fc9dc01129931","/static/css/main.307a68a9.chunk.css.map":"6f1a6687790812263b97b1b18992315e06b31bed8aad1aa8e017c44a31035bc4","/static/js/2.862b9047.chunk.js.LICENSE.txt":"68b16697969801057d3e0deb105ae8509867a6ae2629d732d8100d885b17e4c5","/static/js/3.5a187cee.chunk.js":"53250a5ea59f9fdd47e983072a0850e56e5397eacb37c4ea4e5750faa0ab9e81","/static/js/3.5a187cee.chunk.js.map":"800655ea1c185618ee5d4b6ff7a2b958403b5c922ae6b105dc46f11e6470067d","/static/js/main.6e616219.chunk.js":"3f84c311e5886072a5679284ffb1668a6586bf9a3d3e3cd7b6e6d13dbc8b18d2","/static/js/runtime-main.2b329900.js":"5cc5375ede55594d4470e14926614cac0ab23fb290d7b67a34a84b6a9d03ed69","/static/js/main.6e616219.chunk.js.map":"2851d432c9e8ebf1f4d5e852e1db993b0c31a5a84e6cb172181b728fd245bf9b","/static/js/runtime-main.2b329900.js.map":"d9e5ad47bda193f76b03fab0c0231c578f70cf8f18ba575e37a8082331b77dc9","/static/css/2.c1256375.chunk.css":"8acb4e081ecdb0935bf3d2f5e7464f0688948372639174fd7cdc40f5db24bb77","/static/js/2.862b9047.chunk.js":"fb2dece9c9ef7477e143e478d1362326b8ac9ec2229145adbc39d21ffe969987","/static/css/2.c1256375.chunk.css.map":"5a1d7d871e2c5292e4d32d75371cb1b3fe971eaf6ebf47d38c9c730496e51f38","/static/js/2.862b9047.chunk.js.map":"5183a34c1a2507ae244c0144f05f20169739c54edbbe7712e1a947338f42be66"}}
+[debug] [2021-10-18T14:53:47.285Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/sites/medicare-mi/versions/c760bb1caac5f95a:populateFiles 200
+[debug] [2021-10-18T14:53:47.285Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/medicare-mi/versions/c760bb1caac5f95a:populateFiles {"uploadRequiredHashes":["3f84c311e5886072a5679284ffb1668a6586bf9a3d3e3cd7b6e6d13dbc8b18d2","8366c4b2743cb6f90879084f79eb3800e2130a1d770deb2b4f2b43e2e663c313","2851d432c9e8ebf1f4d5e852e1db993b0c31a5a84e6cb172181b728fd245bf9b","eac70155a8560735e329f46101daba6900318f8e6c4a735f4c98747b2bc5aae3"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files"}
+[debug] [2021-10-18T14:53:47.288Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/3f84c311e5886072a5679284ffb1668a6586bf9a3d3e3cd7b6e6d13dbc8b18d2 [none]
+[debug] [2021-10-18T14:53:47.288Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/3f84c311e5886072a5679284ffb1668a6586bf9a3d3e3cd7b6e6d13dbc8b18d2 [stream]
+[debug] [2021-10-18T14:53:47.291Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/8366c4b2743cb6f90879084f79eb3800e2130a1d770deb2b4f2b43e2e663c313 [none]
+[debug] [2021-10-18T14:53:47.291Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/8366c4b2743cb6f90879084f79eb3800e2130a1d770deb2b4f2b43e2e663c313 [stream]
+[debug] [2021-10-18T14:53:47.293Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/2851d432c9e8ebf1f4d5e852e1db993b0c31a5a84e6cb172181b728fd245bf9b [none]
+[debug] [2021-10-18T14:53:47.293Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/2851d432c9e8ebf1f4d5e852e1db993b0c31a5a84e6cb172181b728fd245bf9b [stream]
+[debug] [2021-10-18T14:53:47.295Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/eac70155a8560735e329f46101daba6900318f8e6c4a735f4c98747b2bc5aae3 [none]
+[debug] [2021-10-18T14:53:47.295Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/eac70155a8560735e329f46101daba6900318f8e6c4a735f4c98747b2bc5aae3 [stream]
+[debug] [2021-10-18T14:53:47.298Z] [hosting][populate queue][FINAL] {"max":1816,"min":1816,"avg":1816,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1826}
+[debug] [2021-10-18T14:53:47.299Z] [hosting] uploads queued: 4
+[debug] [2021-10-18T14:53:48.900Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/eac70155a8560735e329f46101daba6900318f8e6c4a735f4c98747b2bc5aae3 200
+[debug] [2021-10-18T14:53:48.901Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/eac70155a8560735e329f46101daba6900318f8e6c4a735f4c98747b2bc5aae3 [stream]
+[debug] [2021-10-18T14:53:48.980Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/8366c4b2743cb6f90879084f79eb3800e2130a1d770deb2b4f2b43e2e663c313 200
+[debug] [2021-10-18T14:53:48.980Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/8366c4b2743cb6f90879084f79eb3800e2130a1d770deb2b4f2b43e2e663c313 [stream]
+[debug] [2021-10-18T14:53:49.001Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/3f84c311e5886072a5679284ffb1668a6586bf9a3d3e3cd7b6e6d13dbc8b18d2 200
+[debug] [2021-10-18T14:53:49.001Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/3f84c311e5886072a5679284ffb1668a6586bf9a3d3e3cd7b6e6d13dbc8b18d2 [stream]
+[debug] [2021-10-18T14:53:50.170Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/2851d432c9e8ebf1f4d5e852e1db993b0c31a5a84e6cb172181b728fd245bf9b 200
+[debug] [2021-10-18T14:53:50.171Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/medicare-mi/versions/c760bb1caac5f95a/files/2851d432c9e8ebf1f4d5e852e1db993b0c31a5a84e6cb172181b728fd245bf9b [stream]
+[debug] [2021-10-18T14:53:50.171Z] [hosting][upload queue][FINAL] {"max":2884,"min":1614,"avg":1976.75,"active":0,"complete":4,"success":4,"errored":0,"retried":0,"total":4,"elapsed":2885}
+[info] +  hosting[medicare-mi]: file upload complete 
+[debug] [2021-10-18T14:53:50.172Z] [hosting] deploy completed after 5033ms
+[debug] [2021-10-18T14:53:50.178Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "/service-worker.js",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache"
+            }
+          ]
+        }
+      ],
+      "site": "medicare-mi"
+    },
+    "site": "medicare-mi",
+    "version": "sites/medicare-mi/versions/c760bb1caac5f95a"
+  }
+]
+[info] i  hosting[medicare-mi]: finalizing version... 
+[debug] [2021-10-18T14:53:50.179Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-10-18T14:53:50.180Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-10-18T14:53:50.372Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Mon, 18 Oct 2021 14:53:58 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-18T14:53:50.388Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/medicare-mi/versions/c760bb1caac5f95a?updateMask=status  
+ {"status":"FINALIZED"}
+[debug] [2021-10-18T14:53:51.919Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 18 Oct 2021 14:54:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-18T14:53:51.920Z] [hosting] finalized version for medicare-mi: {"name":"sites/medicare-mi/versions/c760bb1caac5f95a","status":"FINALIZED","config":{"headers":[{"headers":{"Cache-Control":"no-cache"},"glob":"/service-worker.js"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2021-10-18T14:53:53.251220Z","createUser":{"email":"mahabubemon24@gmail.com"},"finalizeTime":"2021-10-18T14:54:00.276835Z","finalizeUser":{"email":"mahabubemon24@gmail.com"}}
+[info] +  hosting[medicare-mi]: version finalized 
+[info] i  hosting[medicare-mi]: releasing new version... 
+[debug] [2021-10-18T14:53:51.922Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/medicare-mi/releases?version_name=sites/medicare-mi/versions/c760bb1caac5f95a  
+ {"message":null}
+[debug] [2021-10-18T14:53:53.441Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 18 Oct 2021 14:54:01 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-18T14:53:53.441Z] [hosting] release: {"name":"sites/medicare-mi/releases/1634568841274956","version":{"name":"sites/medicare-mi/versions/c760bb1caac5f95a","status":"FINALIZED","config":{"headers":[{"headers":{"Cache-Control":"no-cache"},"glob":"/service-worker.js"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2021-10-18T14:53:53.251220Z","createUser":{"email":"mahabubemon24@gmail.com"},"finalizeTime":"2021-10-18T14:54:00.276835Z","finalizeUser":{"email":"mahabubemon24@gmail.com"}},"type":"DEPLOY","releaseTime":"2021-10-18T14:54:01.274956319Z","releaseUser":{"email":"mahabubemon24@gmail.com"}}
+[info] +  hosting[medicare-mi]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/medicare-mi/overview
+[info] Hosting URL: https://medicare-mi.web.app

@@ -5,14 +5,14 @@ import Banner from "../../banner/Banner";
 import Service from "../../service/Service";
 
 const Home = () => {
-  const {services} = useServices();
+  const { services } = useServices();
   return (
     <>
       <Banner></Banner>
       <section className="container text-center py-5">
-          <h2>Try Something from Delicious Dishes</h2>
+        <h2>Welcome to Dental Care</h2>
         <Row xs={1} md={3} className="g-4 p-4">
-          {services.slice(0,6).map( service => (
+          {services.slice(0, 6).map((service) => (
             <Service key={service._id} service={service}></Service>
           ))}
         </Row>

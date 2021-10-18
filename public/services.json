@@ -1,21 +1,21 @@
 [
   {
     "_id": 1,
-    "title": "DENTAL SERVICES",
-    "details": "General dentists prevent, evaluate, diagnose, and treat diseases of the oral cavity, as well as maintain the function and appearance of the teeth.",
-    "image": "https://i.ibb.co/GWw15G1/dental-1.jpg"
-  },
-  {
-    "_id": 2,
     "title": "IMPLANTS",
     "details": "Dental implants are replacement tooth roots. Implants provide a strong foundation for fixed (permanent) or removable replacement teeth that are made to match your natural teeth.",
     "image": "https://i.ibb.co/9TTcZq6/dental-2.jpg"
   },
   {
-    "_id": 3,
+    "_id": 2,
     "title": "DENTISTRY",
     "details": "Dentistry, the profession concerned with the prevention and treatment of oral disease, including diseases of the teeth and supporting structures and diseases of the soft tissues of the mouth.",
     "image": "https://i.ibb.co/r5vspxV/dental-3.jpg"
+  },
+  {
+    "_id": 3,
+    "title": "DENTAL SERVICES",
+    "details": "General dentists prevent, evaluate, diagnose, and treat diseases of the oral cavity, as well as maintain the function and appearance of the teeth.",
+    "image": "https://i.ibb.co/GWw15G1/dental-1.jpg"
   },
   {
     "_id": 4,

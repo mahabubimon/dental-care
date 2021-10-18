@@ -1,13 +1,8 @@
 import {
-    getAuth,
-    FacebookAuthProvider,
-    GithubAuthProvider,
-    GoogleAuthProvider,
-    TwitterAuthProvider,
-    onAuthStateChanged, 
-    signInWithPopup, 
-    signOut
-  } from "firebase/auth";
+  createUserWithEmailAndPassword,
+  FacebookAuthProvider, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup,
+  signOut, TwitterAuthProvider
+} from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
 
@@ -15,6 +10,9 @@ initializeAuthentication();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [isLogin, setIsLogin] = useState(false);
     const [error, setError] = useState("");
 
     const auth = getAuth();
@@ -23,25 +21,43 @@ const useFirebase = () => {
 
     const googleProvider = new GoogleAuthProvider();
 
-    const gitHubProvider = new GithubAuthProvider();
-
     const twitterProvider = new TwitterAuthProvider();
+
+    const handleEmail = (e) => {
+      setEmail(e.target.value)
+    }
+    const handleUser = (e) => {
+      setUser(e.target.value)
+    }
+    const handlePassword = (e) => {
+      setPassword(e.target.value)
+    }
+
+    const toggleLogin = e => {
+      setIsLogin(e.target.checked);
+    }
+
+    const handleRegistration = (e) => {
+      e.preventDefault();
+      createUserWithEmailAndPassword(auth, email, password)
+      .then(result => setUser(result.user))
+      .catch(error => setError(error.message));
+      
+      signInWithEmailAndPassword(auth, email, password)
+      .then(result => setUser(result.user))
+      .catch(error => setError(error.message));
+    }
 
     const facebookSignIn = () => {
         signInWithPopup(auth, facebookProvider)
         .then(result => setUser(result.user))
         .catch(error => setError(error.message));
     }
+
     const googleSignIn = () => {
         signInWithPopup(auth, googleProvider)
         .then(result => setUser(result.user))
         .catch(error => setError(error.message));
-    }
-
-    const gitHubSignIn = () => {
-      signInWithPopup(auth, gitHubProvider)
-      .then(result => setUser(result.user))
-      .catch(error => setError(error.message));
     }
 
     const twitterSignIn = () => {
@@ -64,9 +80,14 @@ const useFirebase = () => {
     return {
         user,
         error,
+        handleUser,
+        isLogin,
+        toggleLogin,
+        handleEmail,
+        handlePassword,
+        handleRegistration,
         facebookSignIn,
         googleSignIn,
-        gitHubSignIn,
         twitterSignIn,
         logout
     }
