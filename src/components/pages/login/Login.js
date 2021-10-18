@@ -32,8 +32,8 @@ const Login = () => {
           <br />
           <small className="text-danger">
             {" "}
-            New User in Red-Onion?
-            <Link to="/signup" style={{ textDecoration: "none" }}>
+            New User in Dental-Care?
+            <Link to="/" style={{ textDecoration: "none" }}>
               {" "}
               Register
             </Link>

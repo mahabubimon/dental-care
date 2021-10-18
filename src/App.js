@@ -3,7 +3,6 @@ import Home from "./components/pages/home/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cart from "./components/pages/cart/Cart";
 import Login from "./components/pages/login/Login";
-import SignUp from "./components/pages/signup/SignUp";
 import NotFound from "./components/pages/notfound/NotFound";
 import AuthProvider from "./context/AuthProvider";
 import Services from "./components/pages/services/Services";
@@ -28,9 +27,6 @@ function App() {
             </Route>
             <Route path="/login">
               <Login></Login>
-            </Route>
-            <Route path="/signup">
-              <SignUp></SignUp>
             </Route>
             <Route path="*">
               <NotFound></NotFound>
