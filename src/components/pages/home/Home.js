@@ -1,11 +1,12 @@
 import React from "react";
 import { Row } from "react-bootstrap";
-import useServices from "../../../hooks/useServices";
+import useAuth from "../../../hooks/useAuth";
 import Banner from "../../banner/Banner";
 import Service from "../../service/Service";
 
 const Home = () => {
-  const { services } = useServices();
+  const { servicesContext } = useAuth();
+  const {services} = servicesContext;
   return (
     <>
       <Banner></Banner>

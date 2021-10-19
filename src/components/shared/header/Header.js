@@ -7,7 +7,7 @@ import "./header.css"
 
 const Header = () => {
   const {firebaseContext}= useAuth();
-  const { user, logout } = firebaseContext;
+  const { user, handleLogout } = firebaseContext;
 
   return (
     <header>
@@ -41,7 +41,7 @@ const Header = () => {
                     className="user-image"
                   />
                   <span> {user.displayName}</span>
-                  <Button className="btn-danger ms-4" onClick={logout}>
+                  <Button className="btn-danger ms-4" onClick={handleLogout}>
                     Logout
                   </Button>
                 </div>

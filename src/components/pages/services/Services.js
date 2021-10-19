@@ -1,10 +1,11 @@
 import React from "react";
 import Service from "../../service/Service";
 import { Row } from "react-bootstrap";
-import useServices from "../../../hooks/useServices";
+import useAuth from "../../../hooks/useAuth";
 
 const Services = () => {
-  const { services } = useServices();
+  const { servicesContext } = useAuth();
+  const { services } = servicesContext;
   return (
     <section className="container text-center py-5">
       <h2>Welcome to Dental Care</h2>

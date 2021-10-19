@@ -1,27 +1,29 @@
-import React from 'react';
-import { Row } from 'react-bootstrap';
-import { useParams } from 'react-router';
-import useAuth from '../../../hooks/useAuth';
+import React from "react";
+import { Card, Row } from "react-bootstrap";
+import { useParams } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const ServicesDetails = () => {
-    const { id } = useParams();
-    
-    const { servicesContext } = useAuth();
-    const {services} = servicesContext;
-    const service = services?.find(service => service?._id === id);
+  const { id } = useParams();
 
-    return (
-        <section className="container">
-            <Row>
-                <div className="col-md-6">
-                    <img src={service?.image} alt="" />
-                </div>
-                <div className="col-md-6">
-                    <h2>Welcome to Our Services</h2>
-                </div>
-            </Row>
-        </section>
-    );
+  const { servicesContext } = useAuth();
+  const { services } = servicesContext;
+  const service = services.filter(service => service._id === id);
+  const { image, title, details } = service;
+
+  return (
+    <section className="container">
+      <Row>
+        <Card>
+          <Card.Img variant="top" src={image} />
+          <Card.Body>
+            <Card.Title>{title}</Card.Title>
+            <Card.Text>{details}</Card.Text>
+          </Card.Body>
+        </Card>
+      </Row>
+    </section>
+  );
 };
 
 export default ServicesDetails;

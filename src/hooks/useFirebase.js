@@ -1,13 +1,11 @@
 import {
-  createUserWithEmailAndPassword,
-  FacebookAuthProvider,
   getAuth,
+  FacebookAuthProvider,
   GoogleAuthProvider,
+  TwitterAuthProvider,
   onAuthStateChanged,
-  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  TwitterAuthProvider,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
@@ -15,10 +13,7 @@ import initializeAuthentication from "../Firebase/firebase.init";
 initializeAuthentication();
 
 const useFirebase = () => {
-  const [user, setUser] = useState({});
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -29,31 +24,6 @@ const useFirebase = () => {
   const googleProvider = new GoogleAuthProvider();
 
   const twitterProvider = new TwitterAuthProvider();
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const handleUser = (e) => {
-    setUser(e.target.value);
-  };
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const toggleLogin = (e) => {
-    setIsLogin(e.target.checked);
-  };
-
-  const handleRegistration = (e) => {
-    e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => setUser(result.user))
-      .catch((error) => setError(error.message));
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then((result) => setUser(result.user))
-      .catch((error) => setError(error.message));
-  };
 
   const facebookSignIn = () => {
     setIsLoading(true);
@@ -77,8 +47,13 @@ const useFirebase = () => {
     });
   }, [auth]);
 
-  const logout = () => {
-    signOut(auth).then(() => setUser({}));
+  const handleLogout = () => {
+    setIsLoading(true);
+    signOut(auth)
+      .then(() => {
+        setUser("");
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return {
@@ -86,18 +61,12 @@ const useFirebase = () => {
     setUser,
     error,
     setError,
-    handleUser,
-    isLogin,
     isLoading,
     setIsLoading,
-    toggleLogin,
-    handleEmail,
-    handlePassword,
-    handleRegistration,
     facebookSignIn,
     googleSignIn,
     twitterSignIn,
-    logout,
+    handleLogout,
   };
 };
 
