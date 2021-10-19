@@ -6,7 +6,8 @@ import useAuth from "../../../hooks/useAuth";
 import "./header.css"
 
 const Header = () => {
-  const { user, logout } = useAuth();
+  const {firebaseContext}= useAuth();
+  const { user, logout } = firebaseContext;
 
   return (
     <header>

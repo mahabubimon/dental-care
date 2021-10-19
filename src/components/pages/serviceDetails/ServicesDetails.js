@@ -1,11 +1,13 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 import { useParams } from 'react-router';
-import useServices from '../../../hooks/useServices';
+import useAuth from '../../../hooks/useAuth';
 
 const ServicesDetails = () => {
     const { id } = useParams();
-    const { services } = useServices();
+    
+    const { servicesContext } = useAuth();
+    const {services} = servicesContext;
     const service = services?.find(service => service?._id === id);
 
     return (

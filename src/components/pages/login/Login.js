@@ -7,7 +7,8 @@ import useAuth from "../../../hooks/useAuth";
 import { useHistory, useLocation } from "react-router";
 
 const Login = () => {
-  const { setUser, setIsLoading, isLogin, handleUser, toggleLogin, handleEmail, handlePassword, handleRegistration, facebookSignIn, googleSignIn, twitterSignIn } = useAuth();
+  const {firebaseContext}= useAuth();
+  const { setUser, setIsLoading, isLogin, handleUser, toggleLogin, handleEmail, handlePassword, handleRegistration, facebookSignIn, googleSignIn, twitterSignIn } = firebaseContext;
 
   const {
     register,
