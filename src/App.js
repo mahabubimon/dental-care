@@ -6,6 +6,8 @@ import Login from "./components/pages/login/Login";
 import NotFound from "./components/pages/notfound/NotFound";
 import AuthProvider from "./context/AuthProvider";
 import Services from "./components/pages/services/Services";
+import PrivateRoute from "./components/privateRoute/PrivateRoute";
+import ServicesDetails from "./components/pages/serviceDetails/ServicesDetails";
 
 function App() {
   return (
@@ -22,9 +24,12 @@ function App() {
             <Route path="/services">
               <Services></Services>
             </Route>
-            <Route path="/cart">
+            <PrivateRoute path="/service/:id">
+              <ServicesDetails></ServicesDetails>
+            </PrivateRoute>
+            <PrivateRoute path="/cart">
               <Cart></Cart>
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
               <Login></Login>
             </Route>

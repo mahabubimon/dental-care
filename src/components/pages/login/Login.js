@@ -4,9 +4,10 @@ import { Button, Form } from "react-bootstrap";
 import "../../banner/Banner.css";
 import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
+import { useHistory, useLocation } from "react-router";
 
 const Login = () => {
-  const { isLogin, handleUser, toggleLogin, handleEmail, handlePassword, handleRegistration, facebookSignIn, googleSignIn, twitterSignIn } = useAuth();
+  const { setUser, setIsLoading, isLogin, handleUser, toggleLogin, handleEmail, handlePassword, handleRegistration, facebookSignIn, googleSignIn, twitterSignIn } = useAuth();
 
   const {
     register,
@@ -14,7 +15,18 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  // const onSubmit = (data) => console(data);
+  const history = useHistory();
+  const location = useLocation();
+
+  const redirect_uri = location.state?.from || "./home";
+
+  const handleSignIn = (provider) => {
+    provider().then((result) => {
+      setUser(result.user);
+      history.push(redirect_uri);
+    })
+    .finally(() => setIsLoading(false))
+  }
 
   return (
     <section className="row">
@@ -33,25 +45,19 @@ const Login = () => {
           alt=""
         />
         <Form onSubmit={()=>{handleSubmit(handleRegistration)}}>
-          {
-           isLogin || <>
           <input
           onBlur={handleUser}
             type="text"
             placeholder="Name"
             {...register("Name", { required: true, maxLength: 16 })}
-          /> <br />
+          />
 
-          {errors.Name?.type === 'required' ? "*Name is required" : "*Name Required"}  <br />
-          </>
-}
-
-          <input
-            onBlur={handleEmail}
+          {errors.Name?.type === 'required' ? "*Name is required" : "*Name Required"}
+          <input onBlur={handleEmail}
             type="text"
             placeholder="Email"
             {...register("Email", { required: true, pattern: /^\S+@\S+$/i })}
-          /> <br />
+          />
           {errors.Email?.type === 'required' ? '*Email Required.' : "*Enter Valid Email."} <br />
 
           <input
@@ -68,27 +74,26 @@ const Login = () => {
             type="checkbox"
           /> <small>Already Have an Account.</small>
         </Form>
-        <br />
         <div className="text-center">
           <h3>
             Or <br /> Sign-In with
           </h3>
           <Button
-            onClick={facebookSignIn}
+            onClick={()=>handleSignIn(facebookSignIn)}
             className="fs-1 p-1 m-1 text-primary"
             variant="light"
           >
             <FaFacebook />
           </Button>
           <Button
-            onClick={googleSignIn}
+            onClick={()=>handleSignIn(googleSignIn)}
             className="fs-1 p-1 m-1 text-danger"
             variant="light"
           >
             <FaGoogle />
           </Button>
           <Button
-            onClick={twitterSignIn}
+            onClick={()=>handleSignIn(twitterSignIn)}
             className="fs-1 p-1 m-1 text-success"
             variant="light"
           >
