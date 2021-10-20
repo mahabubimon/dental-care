@@ -4,7 +4,7 @@ const useServices = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("/services.json")
+    fetch("https://mahabubimon.github.io/json-fake-data/dentalCareServices.json")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);

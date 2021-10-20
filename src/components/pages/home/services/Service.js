@@ -6,7 +6,7 @@ const Service = ({ service }) => {
   const { _id, image, title, details } = service;
   return (
     <Col>
-      <Card>
+      <Card className="h-100">
         <Card.Img variant="top" src={image} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
@@ -18,7 +18,7 @@ const Service = ({ service }) => {
           </Link>
         </Card.Footer>
       </Card>
-    </Col>
+      </Col>
   );
 };
 

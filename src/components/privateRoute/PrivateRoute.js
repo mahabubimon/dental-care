@@ -4,8 +4,8 @@ import { Redirect, Route } from "react-router";
 import useAuth from "../../hooks/useAuth";
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const {firebaseContext}= useAuth();
-  const { user, isLoading } = firebaseContext;
+  const {firebaseAll}= useAuth();
+  const { user, isLoading } = firebaseAll;
 
   isLoading && (
     <div className="text-center">

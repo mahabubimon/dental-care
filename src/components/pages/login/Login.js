@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
-import "../../banner/Banner.css";
+import "../home/banner/Banner.css";
 import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import { useHistory, useLocation } from "react-router";
@@ -20,9 +20,9 @@ const Login = () => {
   // const [isLogin, setIsLogin] = useState(false);
   const [error, setError] = useState("");
 
-  const { firebaseContext } = useAuth();
-  const { setUser, setIsLoading, facebookSignIn, googleSignIn, twitterSignIn, handleLogOut } =
-    firebaseContext;
+  const { firebaseAll } = useAuth();
+  const { setUser, setIsLoading, facebookSignIn, googleSignIn, twitterSignIn } =
+    firebaseAll;
 
   const {
     register,
@@ -65,11 +65,10 @@ const Login = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         updateUserName();
-        handleLogOut();
-        
         setToggle(true);
       })
       .catch((error) => {
+        console.log(error)
         setError(error.message);
       })
       .finally(() => setIsLoading(false));
@@ -94,7 +93,7 @@ const Login = () => {
       setError("Password should be 6 Character");
     }
     !toggle
-      ? registerUser(email, password, userName)
+      ? registerUser(email, password)
       : handleSignInUser(email, password);
   };
 
@@ -144,7 +143,7 @@ const Login = () => {
             onBlur={handleEmail}
             type="text"
             placeholder="Email"
-            {...register("Email", { required: true, pattern: /^\S+@\S+$/i })}
+            {...register("Email", { required: true, pattern: /^\S+@\S+$/ })}
           />
           {errors.Email?.type === "required"
             ? "*Email Required."
@@ -174,18 +173,18 @@ const Login = () => {
             Or <br /> Sign-In with
           </h3>
           <Button
-            onClick={() => handleSignIn(facebookSignIn)}
-            className="fs-1 p-1 m-1 text-primary"
-            variant="light"
-          >
-            <FaFacebook />
-          </Button>
-          <Button
             onClick={() => handleSignIn(googleSignIn)}
             className="fs-1 p-1 m-1 text-danger"
             variant="light"
           >
             <FaGoogle />
+          </Button>
+          <Button
+            onClick={() => handleSignIn(facebookSignIn)}
+            className="fs-1 p-1 m-1 text-primary"
+            variant="light"
+          >
+            <FaFacebook />
           </Button>
           <Button
             onClick={() => handleSignIn(twitterSignIn)}

@@ -1,13 +1,13 @@
 import Layout from "./components/layout/Layout";
-import Home from "./components/pages/home/Home";
+import Home from "./components/pages/home/home/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Cart from "./components/pages/cart/Cart";
 import Login from "./components/pages/login/Login";
 import NotFound from "./components/pages/notfound/NotFound";
 import AuthProvider from "./context/AuthProvider";
-import Services from "./components/pages/services/Services";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import ServicesDetails from "./components/pages/serviceDetails/ServicesDetails";
+import Blogs from "./components/pages/blogs/Blogs";
+import Contact from "./components/pages/contact/Contact";
 
 function App() {
   return (
@@ -21,14 +21,14 @@ function App() {
             <Route path="/home">
               <Home></Home>
             </Route>
-            <Route path="/services">
-              <Services></Services>
-            </Route>
+            <PrivateRoute path="/contact">
+              <Contact></Contact>
+            </PrivateRoute>
+            <PrivateRoute path="/blogs">
+              <Blogs></Blogs>
+            </PrivateRoute>
             <PrivateRoute path="/service/:id">
               <ServicesDetails></ServicesDetails>
-            </PrivateRoute>
-            <PrivateRoute path="/cart">
-              <Cart></Cart>
             </PrivateRoute>
             <Route path="/login">
               <Login></Login>

@@ -41,6 +41,7 @@ const useFirebase = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     onAuthStateChanged(auth, (user) => {
       user ? setUser(user) : setUser({});
       setIsLoading(false);
