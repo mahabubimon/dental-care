@@ -1,111 +1,100 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Button, Form } from "react-bootstrap";
-import "../home/banner/Banner.css";
+import { Button } from "react-bootstrap";
 import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
-import useAuth from "../../../hooks/useAuth";
 import { useHistory, useLocation } from "react-router";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword,
-  updateProfile,
-} from "@firebase/auth";
+import useAuth from "../../../hooks/useAuth";
+import "../home/banner/Banner.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
-  const [toggle, setToggle] = useState(false);
-  // const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const [error, setError] = useState("");
 
   const { firebaseAll } = useAuth();
-  const { setUser, setIsLoading, facebookSignIn, googleSignIn, twitterSignIn } =
-    firebaseAll;
-
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+    setUser,
+    setIsLoading,
+    registerNewUser,
+    setNewUser,
+    signIn,
+    facebookSignIn,
+    googleSignIn,
+    twitterSignIn,
+  } = firebaseAll;
 
-  const auth = getAuth();
   const history = useHistory();
   const location = useLocation();
   const redirect_uri = location.state?.from || "/home";
 
+  const handleUserName = (e) => {
+    setUserName(e.target.value);
+  };
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-  const handleUserName = (e) => {
-    setUserName(e.target.value);
+
+  const handleToggle = (e) => {
+    setIsLogin(e.target.checked);
   };
 
-  const toggleLogin = (e) => {
-    setToggle(e.target.checked);
+  const registerUser = (e) => {
+    e.preventDefault();
+    registerNewUser(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        updateUserName();
+        handleSignInUser(e);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const updateUserName = () => {
-    updateProfile(auth.currentUser, {
-      displayName: userName,
-    })
+    setNewUser(userName)
       .then(() => {})
       .catch((error) => {
         setError(error.message);
       });
   };
-  
 
-  const registerUser = (email, password) => {
-    setIsLoading(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        updateUserName();
-        setToggle(true);
-      })
-      .catch((error) => {
-        console.log(error)
-        setError(error.message);
-      })
-      .finally(() => setIsLoading(false));
-  };
-
-  const handleSignInUser = (email, password) => {
-    setIsLoading(true);
-    signInWithEmailAndPassword(auth, email, password)
+  const handleSignInUser = (e) => {
+    signIn(email, password)
       .then((result) => {
-        console.log(result.user);
+        setUser(result.user);
         history.push(redirect_uri);
       })
       .catch((error) => {
         setError(error.message);
+        console.log(error);
       })
       .finally(() => setIsLoading(false));
+    e.preventDefault();
   };
 
   const handleRegistration = (e) => {
-    e.preventDefault();
     if (password.length < 6) {
       setError("Password should be 6 Character");
     }
-    !toggle
-      ? registerUser(email, password)
-      : handleSignInUser(email, password);
+    isLogin ? handleSignInUser(e) : registerUser(e);
   };
 
   const handleSignIn = (provider) => {
     provider()
       .then((result) => {
         setUser(result.user);
+        console.log(result.user);
         history.push(redirect_uri);
       })
       .finally(() => setIsLoading(false));
   };
-
   return (
     <section className="row">
       <div className="col-md-7">
@@ -116,58 +105,34 @@ const Login = () => {
         />
       </div>
       <div className="col-md-5 py-5">
-        <h2>Please {toggle ? "Sign-In" : "Register"}</h2>
+        <h2>Please {isLogin ? "Sign-In" : "Register"}</h2>
         <img
           className="w-50 img-fluid"
           src="https://i.ibb.co/tz5SyyG/dental-care-logo.png"
           alt=""
         />
-        <Form
-          onSubmit={() => {
-            handleSubmit(handleRegistration);
-          }}
-        >
-          {
-            !toggle && <><input
-              onBlur={handleUserName}
-              type="text"
-              placeholder="Name"
-              {...register("Name", { required: true, maxLength: 16 })}
-            />
-            {errors.Name?.type === "required"
-              ? "*Name is required"
-              : "*Name Required"}
-              </>
-          }
-          <input
-            onBlur={handleEmail}
-            type="text"
-            placeholder="Email"
-            {...register("Email", { required: true, pattern: /^\S+@\S+$/ })}
-          />
-          {errors.Email?.type === "required"
-            ? "*Email Required."
-            : "*Enter Valid Email."}{" "}
+        <form onSubmit={handleRegistration}>
+          <h1>{isLogin ? "Sign In" : "Register"}</h1>
+          {isLogin || (
+            <input onChange={handleUserName} type="text" placeholder="Name" />
+          )}
+          <br />
+          <input onChange={handleEmail} type="email" placeholder="Email" />{" "}
           <br />
           <input
-            onBlur={handlePassword}
-            type="text"
+            onChange={handlePassword}
+            type="password"
             placeholder="Password"
-            {...register("Password", {
-              required: true,
-              pattern:
-                /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/i,
-            })}
-          />{" "}
+          />
           <br />
-          {errors.Password?.type === "required"
-            ? "*Password Required."
-            : "*Strong Password Required."}{" "}
-          <br />
-          <input type="submit" value={toggle ? "SignIn" : "Create"} /> <br />
-          <input onChange={toggleLogin} type="checkbox" />{error}
-          <small>Already Have an Account.</small>
-        </Form>
+          <input type="checkbox" onClick={handleToggle} />
+          Already have an account? <br />
+          {error}
+          <Button type="submit" variant="primary">
+            {isLogin ? "Sign In" : "Register"}
+          </Button>
+        </form>
+
         <div className="text-center">
           <h3>
             Or <br /> Sign-In with

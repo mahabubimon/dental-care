@@ -1,11 +1,14 @@
 import {
-  getAuth,
+  createUserWithEmailAndPassword,
   FacebookAuthProvider,
+  getAuth,
   GoogleAuthProvider,
-  TwitterAuthProvider,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  TwitterAuthProvider,
+  updateProfile,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
@@ -19,6 +22,16 @@ const useFirebase = () => {
 
   const auth = getAuth();
 
+  const registerNewUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+  const setNewUser = (name) => {
+    return updateProfile(auth.currentUser, { displayName: name });
+  };
+  const signIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
   const facebookProvider = new FacebookAuthProvider();
 
   const googleProvider = new GoogleAuthProvider();
@@ -26,30 +39,31 @@ const useFirebase = () => {
   const twitterProvider = new TwitterAuthProvider();
 
   const facebookSignIn = () => {
-    setIsLoading(true);
     return signInWithPopup(auth, facebookProvider);
   };
 
   const googleSignIn = () => {
-    setIsLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const twitterSignIn = () => {
-    setIsLoading(true);
     return signInWithPopup(auth, twitterProvider);
   };
 
+  // observe user state change
   useEffect(() => {
-    setIsLoading(true);
-    onAuthStateChanged(auth, (user) => {
-      user ? setUser(user) : setUser({});
+    const unsubscribed = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser({});
+      }
       setIsLoading(false);
     });
+    return () => unsubscribed;
   }, [auth]);
 
   const handleLogout = () => {
-    setIsLoading(true);
     signOut(auth)
       .then(() => {
         setUser("");
@@ -64,6 +78,9 @@ const useFirebase = () => {
     setError,
     isLoading,
     setIsLoading,
+    registerNewUser,
+    setNewUser,
+    signIn,
     facebookSignIn,
     googleSignIn,
     twitterSignIn,

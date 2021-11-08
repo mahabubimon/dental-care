@@ -8,8 +8,10 @@ const Header = () => {
   const { firebaseAll } = useAuth();
   const { user, handleLogout } = firebaseAll;
 
-  return (
+  return    (
     <header>
+
+      
       <Navbar collapseOnSelect expand="lg" fixed="top" bg="light">
         <Container>
           <Navbar.Brand as={Link} to="/">
@@ -42,7 +44,8 @@ const Header = () => {
               </Nav.Link>
               {user.displayName ? (
                 <div className="d-lg-flex">
-                  <img src={user.photoURL} alt="" className="user-image" />
+                  <img src={
+                    user.photoURL || "https://image.freepik.com/free-vector/follow-me-social-business-theme-design_24877-50426.jpg"} alt="" className="user-image" />
                   <span> {user.displayName}</span>
                   <Button className="btn-danger ms-1" onClick={handleLogout}>
                     Logout
